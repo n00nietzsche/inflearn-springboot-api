@@ -1,11 +1,13 @@
 package com.example.inflearn_springboot_api.service;
 
 import com.example.inflearn_springboot_api.domain.User;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service // 스테레오 타이핑이라고 함
 public class UserDaoService {
     private static final List<User> users = new ArrayList<>();
     private static int usersCount = 3;
