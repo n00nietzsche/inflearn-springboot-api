@@ -2,6 +2,7 @@ package com.example.inflearn_springboot_api.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -11,4 +12,7 @@ public class User {
     private Integer id;
     private String name;
     private LocalDateTime joinDate;
+
+//    private User() {
+//    }
 }

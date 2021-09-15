@@ -22,6 +22,7 @@ public class UserDaoService {
         if(user.getId() == null) {
             user.setId(++usersCount);
         }
+        user.setJoinDate(LocalDateTime.now());
 
         users.add(user);
         return user;

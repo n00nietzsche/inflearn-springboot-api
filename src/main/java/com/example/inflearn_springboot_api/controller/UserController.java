@@ -27,7 +27,8 @@ public class UserController {
     }
 
     @PostMapping("")
-    public User addUser(User user) {
+    // @RequestBody: HTTP 요청 Body 영역에 User 객체가 올 것이다.
+    public User addUser(@RequestBody User user) {
         return service.save(user);
     }
 }
