@@ -3,9 +3,12 @@ package com.example.inflearn_springboot_api.controller;
 import com.example.inflearn_springboot_api.domain.User;
 import com.example.inflearn_springboot_api.service.UserDaoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -28,7 +31,14 @@ public class UserController {
 
     @PostMapping("")
     // @RequestBody: HTTP 요청 Body 영역에 User 객체가 올 것이다.
-    public User addUser(@RequestBody User user) {
-        return service.save(user);
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        User savedUser = service.save(user);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedUser.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).build();
     }
 }

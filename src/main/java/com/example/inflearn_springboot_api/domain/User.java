@@ -8,11 +8,9 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class User {
     private Integer id;
     private String name;
     private LocalDateTime joinDate;
-
-//    private User() {
-//    }
 }
