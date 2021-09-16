@@ -11,4 +11,5 @@ public class ExceptionResponse {
     private LocalDateTime timeStamp = LocalDateTime.now();
     private final int httpStatusCode;
     private final String message;
+    private final String description;
 }

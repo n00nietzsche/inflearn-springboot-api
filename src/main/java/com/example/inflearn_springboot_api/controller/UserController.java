@@ -35,6 +35,11 @@ public class UserController {
         return user;
     }
 
+    @GetMapping("/exception")
+    public void exception(){
+        throw new RuntimeException();
+    }
+
     @PostMapping("")
     // @RequestBody: HTTP 요청 Body 영역에 User 객체가 올 것이다.
     public ResponseEntity<User> addUser(@RequestBody User user) {
