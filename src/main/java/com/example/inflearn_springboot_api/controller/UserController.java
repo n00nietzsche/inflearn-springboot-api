@@ -1,7 +1,6 @@
 package com.example.inflearn_springboot_api.controller;
 
 import com.example.inflearn_springboot_api.domain.User;
-import com.example.inflearn_springboot_api.exception.UserNotFoundException;
 import com.example.inflearn_springboot_api.service.UserDaoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +25,7 @@ public class UserController {
     // 이전에 들었던 MVC 2편 컨버터 강의 참고
     @GetMapping("/{id}")
     public User retrieveUser(@PathVariable int id){
-        User user = service.findOne(id);
-
-        if(user == null) {
-            throw new UserNotFoundException(id);
-        }
-
-        return user;
+        return service.findOne(id);
     }
 
     @GetMapping("/exception")
@@ -51,5 +44,17 @@ public class UserController {
                 .toUri();
 
         return ResponseEntity.created(location).build();
+    }
+
+    @DeleteMapping("/{id}")
+    public User deleteUser(@PathVariable int id) {
+        return service.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@RequestBody(required = true) User user, @PathVariable int id) {
+        service.updateById(id, user);
+
+        return ResponseEntity.noContent().build();
     }
 }

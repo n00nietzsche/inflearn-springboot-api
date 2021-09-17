@@ -1,6 +1,7 @@
 package com.example.inflearn_springboot_api.service;
 
 import com.example.inflearn_springboot_api.domain.User;
+import com.example.inflearn_springboot_api.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -36,6 +37,21 @@ public class UserDaoService {
         return users.stream()
                 .filter((user) -> user.getId() == id)
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new UserNotFoundException(id));
+    }
+
+    public User deleteById(int id) {
+        User findUser = findOne(id);
+
+        if(findUser != null) {
+            users.remove(findUser);
+        }
+
+        return findUser;
+    }
+
+    public void updateById(int id, User user) {
+        User findUser = findOne(id);
+        findUser.setName(user.getName());
     }
 }
