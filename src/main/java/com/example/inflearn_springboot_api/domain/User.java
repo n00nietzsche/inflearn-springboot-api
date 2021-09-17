@@ -13,4 +13,8 @@ public class User {
     private Integer id;
     private String name;
     private LocalDateTime joinDate;
+
+    public void updateUser(User updateUser){
+        this.name = updateUser.getName();
+    }
 }

@@ -52,6 +52,6 @@ public class UserDaoService {
 
     public void updateById(int id, User user) {
         User findUser = findOne(id);
-        findUser.setName(user.getName());
+        findUser.updateUser(user);
     }
 }
